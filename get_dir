@@ -1,0 +1,11 @@
+#!/bin/bash
+dirs=`ls /home/data/starcraft/replay_data/` 
+echo ${dirs} | cut -d ' ' -f $1
+
+
+
+
+
+
+
+
