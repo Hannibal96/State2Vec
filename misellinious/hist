@@ -1,0 +1,383 @@
+
+JRE 11.0.3+12-b304.10 amd64 by JetBrains s.r.o
+/home/project-act2vec/Downloads/pycharm-community-2019.2/jbr
+project-act2vec@guy:~/Downloads/pycharm-community-2019.2/bin$ echo $DISPLAY
+localhost:12.0
+project-act2vec@guy:~/Downloads/pycharm-community-2019.2/bin$
+project-act2vec@guy:~/Downloads/pycharm-community-2019.2/bin$ ./pycharm.sh
+OpenJDK 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.intellij.ide.ClassUtilCore to field sun.net.www.protocol.jar.JarFileFactory.fileCache
+WARNING: Please consider reporting this to the maintainers of com.intellij.ide.ClassUtilCore
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+2019-08-21 09:24:03,524 [   9570]   WARN -        #com.intellij.idea.Main - Directory is invalid /home/project-act2vec/pycharm-2019.1.2/config
+java.io.IOException: Directory is invalid /home/project-act2vec/pycharm-2019.1.2/config
+        at com.intellij.openapi.util.io.FileUtil.copyDir(FileUtil.java:502)
+        at com.intellij.openapi.application.ConfigImportHelper.doImport(ConfigImportHelper.java:379)
+        at com.intellij.openapi.application.ConfigImportHelper.importConfigsTo(ConfigImportHelper.java:85)
+        at com.intellij.idea.StartupUtil.lambda$prepareAndStart$5(StartupUtil.java:219)
+        at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:303)
+        at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:776)
+        at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:727)
+        at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:721)
+        at java.base/java.security.AccessController.doPrivileged(Native Method)
+        at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:85)
+        at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:746)
+        at com.intellij.ide.IdeEventQueue.dispatchEvent(IdeEventQueue.java:433)
+        at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+        at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+        at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+        at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+        at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+        at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+
+Settings Import Failed: Unable to import settings. Directory is invalid /home/project-act2vec/pycharm-2019.1.2/config
+Aug 21, 2019 9:24:07 AM java.util.prefs.FileSystemPreferences$1 run
+INFO: Created user preferences directory.
+Aug 21, 2019 9:24:07 AM java.util.prefs.FileSystemPreferences$6 run
+WARNING: Prefs file removed in background /home/project-act2vec/.java/.userPrefs/prefs.xml
+project-act2vec@guy:~/Downloads/pycharm-community-2019.2/bin$
+project-act2vec@guy:~/Downloads/pycharm-community-2019.2/bin$
+project-act2vec@guy:~/Downloads/pycharm-community-2019.2/bin$ clear
+project-act2vec@guy:~/Downloads/pycharm-community-2019.2/bin$ python
+Python 2.7.15rc1 (default, Nov 12 2018, 14:31:15)
+[GCC 7.3.0] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import matplotlib.pyplot as plt
+>>> quit()
+project-act2vec@guy:~/Downloads/pycharm-community-2019.2/bin$
+project-act2vec@guy:~/Downloads/pycharm-community-2019.2/bin$ display /home/data/starcraft/replay_data/996
+9961617f2e99231445128a035ae417e60f052a6306d1771be74b35eff612b94e/ 99686b90feff544cabfacb1c30bfaac67801d42ed3c1000512241d4ae839f605/
+9962d012e215c32802c27a59c5635c50aee991e5eb9264b76697b16300393f75/ 9969203f86b20c45e8a38d3c18f9d37e1317aa3ef25413320e58531a580df2e8/
+996420f4bac5b8ad58ff0f8caea6b7a4430219ca8869d1b174183f158ded98d2/ 996c13f0bda905ea3740e6a515062947c2b63e68f90750beebf5aea8dcd3fdd1/
+9964663b25dce203f0c0573b83170a9fb027806a8d2fdf98b6363a2331670586/ 996c8170f2365825fa7587d83fdd881d6af619aed90ac0cc8f49a0d0986c0c1d/
+9967b272ff35fe3351f5a0f0848875a3e24d03ff702a3456c3bdcbc77acd6384/ 996dc607df1e51f75c26b803dbec27ed73b670715415ae8f5f18f39fc1f68f63/
+project-act2vec@guy:~/Downloads/pycharm-community-2019.2/bin$ display /home/data/starcraft/replay_data/99686b90feff544cabfacb1c30bfaac67801d42ed3c1000512241d4ae839f605/screen_unit_density.npz
+display-im6.q16: no decode delegate for this image format `NPZ' @ error/constitute.c/ReadImage/504.
+project-act2vec@guy:~/Downloads/pycharm-community-2019.2/bin$
+project-act2vec@guy:~/Downloads/pycharm-community-2019.2/bin$ display /home/data/starcraft/replay_data/99686b90feff544cabfacb1c30bfaac67801d42ed3c1000512241d4ae839f605/screen_
+screen_creep.npz                 screen_power.npz                 screen_unit_energy_ratio.npz     screen_unit_type.npz
+screen_effects.npz               screen_selected.npz              screen_unit_hit_point.npz        screen_visibility_map.npz
+screen_height_map.npz            screen_unit_density.npz          screen_unit_hit_point_ratio.npz
+screen_player_id.npz             screen_unit_density_ratio.npz    screen_unit_shield.npz
+screen_player_relative.npz       screen_unit_energy.npz           screen_unit_shield_ratio.npz
+project-act2vec@guy:~/Downloads/pycharm-community-2019.2/bin$ display /home/data/starcraft/replay_data/99686b90feff544cabfacb1c30bfaac67801d42ed3c1000512241d4ae839f605/screen_effects.npz
+display-im6.q16: no decode delegate for this image format `NPZ' @ error/constitute.c/ReadImage/504.
+project-act2vec@guy:~/Downloads/pycharm-community-2019.2/bin$
+project-act2vec@guy:~/Downloads/pycharm-community-2019.2/bin$ python
+Python 2.7.15rc1 (default, Nov 12 2018, 14:31:15)
+[GCC 7.3.0] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import matplotlib.pyplot as plt
+>>> s = open(/home/data/starcraft/replay_data/99686b90feff544cabfacb1c30bfaac67801d42ed3c1000512241d4ae839f605/screen_effects.npz)
+  File "<stdin>", line 1
+    s = open(/home/data/starcraft/replay_data/99686b90feff544cabfacb1c30bfaac67801d42ed3c1000512241d4ae839f605/screen_effects.npz)
+             ^
+SyntaxError: invalid syntax
+>>> s = open('/home/data/starcraft/replay_data/99686b90feff544cabfacb1c30bfaac67801d42ed3c1000512241d4ae839f605/screen_effects.npz')
+>>> show(s)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'show' is not defined
+>>>
+>>> plt.show(s)
+>>>
+>>> plt.plot(s)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/usr/lib/python2.7/dist-packages/matplotlib/pyplot.py", line 3261, in plot
+    ret = ax.plot(*args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/matplotlib/__init__.py", line 1718, in inner
+    return func(ax, *args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/matplotlib/axes/_axes.py", line 1372, in plot
+    for line in self._get_lines(*args, **kwargs):
+  File "/usr/lib/python2.7/dist-packages/matplotlib/axes/_base.py", line 404, in _grab_next_args
+    for seg in self._plot_args(this, kwargs):
+  File "/usr/lib/python2.7/dist-packages/matplotlib/axes/_base.py", line 384, in _plot_args
+    x, y = self._xy_from_xy(x, y)
+  File "/usr/lib/python2.7/dist-packages/matplotlib/axes/_base.py", line 217, in _xy_from_xy
+    by = self.axes.yaxis.update_units(y)
+  File "/usr/lib/python2.7/dist-packages/matplotlib/axis.py", line 1432, in update_units
+    converter = munits.registry.get_converter(data)
+  File "/usr/lib/python2.7/dist-packages/matplotlib/units.py", line 157, in get_converter
+    converter = self.get_converter(next_item)
+  File "/usr/lib/python2.7/dist-packages/matplotlib/units.py", line 162, in get_converter
+    thisx = safe_first_element(x)
+  File "/usr/lib/python2.7/dist-packages/matplotlib/cbook/__init__.py", line 2311, in safe_first_element
+    raise RuntimeError("matplotlib does not support generators "
+RuntimeError: matplotlib does not support generators as input
+>>>
+>>> plt.show()
+>>>
+>>> import numpy as np
+>>> np.load(/home/data/starcraft/replay_data/99686b90feff544cabfacb1c30bfaac67801d42ed3c1000512241d4ae839f605/screen_effects.npz)
+  File "<stdin>", line 1
+    np.load(/home/data/starcraft/replay_data/99686b90feff544cabfacb1c30bfaac67801d42ed3c1000512241d4ae839f605/screen_effects.npz)
+            ^
+SyntaxError: invalid syntax
+>>> x = np.load('/home/data/starcraft/replay_data/99686b90feff544cabfacb1c30bfaac67801d42ed3c1000512241d4ae839f605/screen_effects.npz')
+>>>
+>>> x
+<numpy.lib.npyio.NpzFile object at 0x7f8b1777ae50>
+>>>
+>>> for i in x:
+... print(x)
+  File "<stdin>", line 2
+    print(x)
+        ^
+IndentationError: expected an indented block
+>>>
+>>> for i in x:
+...     print(x)
+...
+<numpy.lib.npyio.NpzFile object at 0x7f8b1777ae50>
+<numpy.lib.npyio.NpzFile object at 0x7f8b1777ae50>
+<numpy.lib.npyio.NpzFile object at 0x7f8b1777ae50>
+<numpy.lib.npyio.NpzFile object at 0x7f8b1777ae50>
+<numpy.lib.npyio.NpzFile object at 0x7f8b1777ae50>
+>>>
+>>> for i in x:
+...      plt.plot(x)
+...      plt.show()
+...
+
+[<matplotlib.lines.Line2D object at 0x7f8b1ffa0ad0>]
+[<matplotlib.lines.Line2D object at 0x7f8b1ff32710>]
+[<matplotlib.lines.Line2D object at 0x7f8b17816910>]
+[<matplotlib.lines.Line2D object at 0x7f8b14fbc810>]
+[<matplotlib.lines.Line2D object at 0x7f8b14f36710>]
+>>>
+>>>
+>>> for i in x:
+...     plt.plot(x.data)
+...     plt.show()
+...
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+AttributeError: 'NpzFile' object has no attribute 'data'
+>>>
+>>>
+>>>
+>>> x = np.load('/home/data/starcraft/replay_data/99686b90feff544cabfacb1c30bfaac67801d42ed3c1000512241d4ae839f605/screen_effects.npz')
+>>> x.keys(
+... )
+['indices', 'indptr', 'format', 'shape', 'data']
+>>> d = x['data']
+>>> type(d)
+<type 'numpy.ndarray'>
+>>> d.shape
+(0,)
+>>> x.shape
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'NpzFile' object has no attribute 'shape'
+>>> x['shape']
+array([3417, 7056])
+>>> d
+array([], dtype=int32)
+>>> x = np.load('/home/data/starcraft/replay_data/99686b90feff544cabfacb1c30bfaac67801d42ed3c1000512241d4ae839f605/screen_unit_density.npz')
+>>>
+>>> x['data']
+array([1, 1, 1, ..., 1, 1, 1], dtype=int32)
+>>>
+>>> x['data'].shape
+(4148848,)
+>>> x['shape']
+array([3417, 7056])
+>>> img = np.reshape(x['data'], x['shape'])
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/project-act2vec/.local/lib/python2.7/site-packages/numpy/core/fromnumeric.py", line 292, in reshape
+    return _wrapfunc(a, 'reshape', newshape, order=order)
+  File "/home/project-act2vec/.local/lib/python2.7/site-packages/numpy/core/fromnumeric.py", line 56, in _wrapfunc
+    return getattr(obj, method)(*args, **kwds)
+ValueError: cannot reshape array of size 4148848 into shape (3417,7056)
+>>> 4148848 / 3417
+1214
+>>> x.keys(
+... )
+['indices', 'indptr', 'format', 'shape', 'data']
+>>> np.sqrt(4148848
+... )
+2036.8721118420763
+>>> np.max(x['data'])
+12
+>>> np.min(x['data'])
+1
+>>> np.mean([x['data'])
+  File "<stdin>", line 1
+    np.mean([x['data'])
+                      ^
+SyntaxError: invalid syntax
+>>> np.mean(x['data'])
+1.1854162890518043
+>>> 3417*7056
+24110352
+>>> x['data'].shape
+(4148848,)
+>>> 24110352/4148848
+5
+>>> 24110352/4148848.
+5.811336544505848
+>>> 256*256
+65536
+>>> x = np.load('/home/data/starcraft/replay_data/99686b90feff544cabfacb1c30bfaac67801d42ed3c1000512241d4ae839f605/minimap_camera.npz')
+>>>
+>>> x.keys()
+['indices', 'indptr', 'format', 'shape', 'data']
+>>>
+>>> x['shape']
+array([3417, 4096])
+>>>
+>>> x['data'].shape
+(218688,)
+>>>
+>>> 218688/3417
+64
+>>> 218688/3417.
+64.0
+>>> 3417*4096
+13996032
+>>> 13996032 / 218688.
+64.0
+>>> 3417 / 64.
+53.390625
+>>> np.sqrt(13996032)
+3741.1271028929236
+>>> import matploblib.pyplot as plt
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ImportError: No module named matploblib.pyplot
+>>> import matploblib.pyplot as plt
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ImportError: No module named matploblib.pyplot
+>>> import matplotlib.pyplot as plt
+>>> plt.imshow(np.reshape(x['data'], [3741, -1]))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/project-act2vec/.local/lib/python2.7/site-packages/numpy/core/fromnumeric.py", line 292, in reshape
+    return _wrapfunc(a, 'reshape', newshape, order=order)
+  File "/home/project-act2vec/.local/lib/python2.7/site-packages/numpy/core/fromnumeric.py", line 56, in _wrapfunc
+    return getattr(obj, method)(*args, **kwds)
+ValueError: cannot reshape array of size 218688 into shape (3741,newaxis)
+>>> x.keys(
+... )
+['indices', 'indptr', 'format', 'shape', 'data']
+>>> x['format']
+array('csr', dtype='|S3')
+>>>
+>>> x = np.load('/home/data/starcraft/replay_data/90757058b06c3a39ee883bae366517d0d553b78df0ddb2e303e691b40571d3ef/minimap_camera.npz')
+>>>
+>>> x['data'].shape
+(13426,)
+>>> x['shape']
+array([ 274, 4096])
+>>> 13426/274.
+49.0
+>>>
+>>> np.sqrt(13426)
+115.87061750072795
+>>> 13426 / 3
+4475
+>>> 13426 / 3.
+4475.333333333333
+>>> 13426 / 4.
+3356.5
+>>> 13426 / 5.
+2685.2
+>>> 13426 / 6.
+2237.6666666666665
+>>> plt.imshow(np.reshape(x['data'], [274, -1])
+... )
+<matplotlib.image.AxesImage object at 0x7f8b12860390>
+>>> plt.show()
+>>> 274/3
+91
+>>> 274/3.
+91.33333333333333
+>>> import scipy
+>>> import scipy.sparse
+>>> A = x['data'].todense()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'numpy.ndarray' object has no attribute 'todense'
+>>> x = scipy.sparse.load_npz('/home/data/starcraft/replay_data/90757058b06c3a39ee883bae366517d0d553b78df0ddb2e303e691b40571d3ef/minimap_camera.npz')
+>>> x.keys()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/project-act2vec/.local/lib/python2.7/site-packages/scipy/sparse/base.py", line 689, in __getattr__
+    raise AttributeError(attr + " not found")
+AttributeError: keys not found
+>>> x.shape
+(274, 4096)
+>>> plt.imshow(x); plt.show()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/usr/lib/python2.7/dist-packages/matplotlib/pyplot.py", line 3101, in imshow
+    **kwargs)
+  File "/usr/lib/python2.7/dist-packages/matplotlib/__init__.py", line 1718, in inner
+    return func(ax, *args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/matplotlib/axes/_axes.py", line 5127, in imshow
+    im.set_data(X)
+  File "/usr/lib/python2.7/dist-packages/matplotlib/image.py", line 607, in set_data
+    raise TypeError("Image data cannot be converted to float")
+TypeError: Image data cannot be converted to float
+>>> type(x)
+<class 'scipy.sparse.csr.csr_matrix'>
+>>> A = x.todense()
+>>> A.shape
+(274, 4096)
+>>> plt.imshow(A); plt.show()
+<matplotlib.image.AxesImage object at 0x7f8b12700550>
+>>> 4096/3.
+1365.3333333333333
+>>> 274/3.
+91.33333333333333
+>>> np.sqrt(4096)
+64.0
+>>> A = np.reshape(A, [274, 64, 64])
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/project-act2vec/.local/lib/python2.7/site-packages/numpy/core/fromnumeric.py", line 292, in reshape
+    return _wrapfunc(a, 'reshape', newshape, order=order)
+  File "/home/project-act2vec/.local/lib/python2.7/site-packages/numpy/core/fromnumeric.py", line 56, in _wrapfunc
+    return getattr(obj, method)(*args, **kwds)
+  File "/home/project-act2vec/.local/lib/python2.7/site-packages/numpy/matrixlib/defmatrix.py", line 182, in __array_finalize__
+    raise ValueError("shape too large to be a matrix.")
+ValueError: shape too large to be a matrix.
+>>> A.shape
+(274, 4096)
+>>> type(A)
+<class 'numpy.matrix'>
+>>> A = np.reshape(A, [274, 64, -1])
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/project-act2vec/.local/lib/python2.7/site-packages/numpy/core/fromnumeric.py", line 292, in reshape
+    return _wrapfunc(a, 'reshape', newshape, order=order)
+  File "/home/project-act2vec/.local/lib/python2.7/site-packages/numpy/core/fromnumeric.py", line 56, in _wrapfunc
+    return getattr(obj, method)(*args, **kwds)
+  File "/home/project-act2vec/.local/lib/python2.7/site-packages/numpy/matrixlib/defmatrix.py", line 182, in __array_finalize__
+    raise ValueError("shape too large to be a matrix.")
+ValueError: shape too large to be a matrix.
+>>> A = np.reshape(A[0], [64, 64])
+>>> plt.imshow(A); plt.show()
+<matplotlib.image.AxesImage object at 0x7f8b1000e510>
+>>> A = np.reshape(x.todense()[1], [64, 64])
+>>> plt.imshow(A); plt.show()
+<matplotlib.image.AxesImage object at 0x7f8b10008990>
+>>> A = np.reshape(x.todense()[10], [64, 64]); plt.imshow(A); plt.show()
+<matplotlib.image.AxesImage object at 0x7f8b0ff84d90>
+>>> A = np.reshape(x.todense()[15], [64, 64]); plt.imshow(A); plt.show()
+<matplotlib.image.AxesImage object at 0x7f8b0ff0a250>
+>>> np.std(x.todense(), axis=0)
+matrix([[0., 0., 0., ..., 0., 0., 0.]])
+>>> np.std(np.mean(x.todense(), axis=0)[:])
+0.061424054722534795
+>>>
+>>> history
+Traceback (most recent call last):
+
+
+
