@@ -1,20 +1,17 @@
+#!/usr/bin/python3.6
 import torch
 import torchvision
 import torchvision.transforms as transforms
-
-import matplotlib
-matplotlib.use('Agg')
-
 import matplotlib.pyplot as plt
-
 import numpy as np
+
 BATCH_SIZE = 1
 
 def imshow(img):
     img = img / 2 + 0.5     # unnormalize
     npimg = img.numpy()
-    matplotlib.pyplot.imshow(np.transpose(npimg, (1, 2, 0)))
-    matplotlib.pyplot.show()
+    plt.imshow(np.transpose(npimg, (1, 2, 0)))
+    plt.show()
 
 transform = transforms.Compose(
     [transforms.ToTensor(),
@@ -75,7 +72,7 @@ print(net.parameters)
 
 dataiter = iter(testloader)
 
-for t in range(5):
+for t in range(1):
     images, labels = dataiter.next()
 
     # print images

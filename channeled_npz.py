@@ -3,8 +3,10 @@ import scipy.sparse
 import numpy as np
 import sys
 import os
-
+import matplotlib.pyplot as plt
 dir_name = sys.argv[1]
+output = (sys.argv[2])
+
 files = (    'screen_unit_hit_point.npz',
              'screen_unit_type.npz',
              'screen_unit_hit_point_ratio.npz',
@@ -13,29 +15,41 @@ files = (    'screen_unit_hit_point.npz',
 
 channeled_state = np.array([]) 
 
+for s in range(1):
 
-for idx,file in enumerate(files):
-    try:
-        sparsed = scipy.sparse.load_npz(dir_name+file)
-    except:
-        print("-E- Could not open file named: "+file)
-        continue
-    densed = sparsed.todense()
-    print("-I- "+file+" contains data of shape: "+str(densed.shape), end = '')
-    print("")
-    photo_dim = (np.sqrt(densed.shape[1]))
-    states_num = densed.shape[0]
+    sparsed1 = scipy.sparse.load_npz(dir_name+"screen_unit_hit_point.npz")
+    densed1 = sparsed1.todense()
+    
+    sparsed2 = scipy.sparse.load_npz(dir_name+"screen_unit_type.npz")
+    densed2 = sparsed2.todense()
+    
+    sparsed3 = scipy.sparse.load_npz(dir_name+"screen_unit_hit_point_ratio.npz")
+    densed3 = sparsed3.todense()
+    
+    sparsed4 = scipy.sparse.load_npz(dir_name+"screen_height_map.npz")
+    densed4 = sparsed4.todense()    
+    
+    sparsed5 = scipy.sparse.load_npz(dir_name+"screen_unit_density_ratio.npz")
+    densed5 = sparsed5.todense()
+    
 
-    for s in range(states_num):
-        if s == 0:
-            print(", photo sizes: "+str(photo_dim)+"x"+str(photo_dim))
-    #    try:
-        image = np.reshape(densed[s], [int(photo_dim), int(photo_dim)])
-        channeled_state = np.array([][])  [idx][s] = 5
-    #    except:
-    #        print("-E- Could not calculate image variance from file named: "+file+" and state number: "+str(s))
-    #        break
+    channeled_state = np.array([densed1, densed2, densed3, densed4, densed5])
+    channeled_state = np.swapaxes(channeled_state, 0, 1)
 
-   
+    print("-I- channeled state shape: "+str(channeled_state.shape))
+
+#    plt.imshow( np.reshape(channeled_state[0,0,:], (84,84)) )
+#    plt.show() 
+
+
+    scipy.sparse.save_npz(output , (np.array)(channeled_state) )
+    
+
+    
+    
+    
+
+
+
 
 
