@@ -34,10 +34,10 @@ def GetData(dir_name):
     if not (densed1.shape[0] == record_length or densed2.shape[0] == record_length or densed3.shape[0] == record_length or densed4.shape[0] == record_length or densed5.shape[0] == record_length):
         print("-E- Wrong states num")
         exit()
-    channeled_state = np.array([densed1, densed2, densed3, densed4, densed5])
+    channeled_state = np.array([densed1, densed2, densed3, densed4])
     channeled_state = np.swapaxes(channeled_state, 0, 1)
     channeled_state = channeled_state[:, :, :, np.newaxis]
-    channeled_state = np.reshape(channeled_state, [record_length,5,84,84])
+    channeled_state = np.reshape(channeled_state, [record_length,4,84,84])
     #print("-I- channeled state shape: "+str(channeled_state.shape))
     """
     for idx, state in enumerate(channeled_state):
@@ -53,11 +53,11 @@ class SiameseNN_conv(nn.Module):
     def __init__(self, SIZE_nn, embedding_dim):
         super(SiameseNN_conv, self).__init__()
 
-        self.conv_1 = nn.Conv2d(in_channels=5, out_channels=1, kernel_size=3, padding=1)
+        self.conv_1 = nn.Conv2d(in_channels=4, out_channels=2, kernel_size=3, padding=1)
         #self.conv_2 = nn.Conv2d(in_channels=16, out_channels=64, kernel_size=3, padding=1)
         #self.conv_3 = nn.Conv2d(in_channels=64, out_channels=128, kernel_size=3, padding=1)
         #self.lin_1 = nn.Linear(64 * SIZE_nn * SIZE_nn, 8 * SIZE_nn * SIZE_nn)
-        self.lin_2 = nn.Linear(1 * SIZE_nn * SIZE_nn, SIZE_nn * SIZE_nn)
+        self.lin_2 = nn.Linear(2 * SIZE_nn * SIZE_nn, SIZE_nn * SIZE_nn)
 
         self.embeddings = nn.Linear(SIZE_nn * SIZE_nn , embedding_dim)
         self.fin_lin = nn.Linear(1, 2)
@@ -87,13 +87,13 @@ class SiameseNN_conv(nn.Module):
         return outputs
 
 
-DATA_LEN = [1]
+DATA_LEN = [2]
 EMBEDDINGS = [2]
 CONTEXTS = [1]
-Epochs = [150000]
-BATCHS = [1]
+Epochs = [10]
+BATCHS = [32]
 
-SAMPLE_RATE = 1
+SAMPLE_RATE = 1000
 
 directories = os.listdir("/home/data/starcraft/replay_data/")  
 
@@ -117,7 +117,7 @@ for cntx in CONTEXTS:
                     name="StarCraftNN_CONTEXT="+str(CONTEXT_SIZE)+"_LENGTH="+str(length)+"_EMBEDINNGS="+str(embed)+"_EPOCHS="+str(epoch)+"_BATCH="+str(batch) 
                     print("\n-I- Running name:  \n\t" + name)
                     model = SiameseNN_conv(SIZE_nn = 84, embedding_dim = EMBEDDING_DIM).cuda()
-                    print("-E- Finish building net")
+                    print("-I- Finish building net")
                     loss_function = torch.nn.CrossEntropyLoss()
                     optimizer = optim.Adam(model.parameters(), lr=0.001)
                     print(model)
@@ -132,7 +132,7 @@ for cntx in CONTEXTS:
                     epochs_counter = 0
                     print_percentage(int(100*epochs_counter/EPOCHS))
 
-                    loss = torch.tensor([0]).float().cuda()                                    
+                    loss = torch.tensor([0]).float().cuda()                      
                     model.zero_grad()
                     
                     try:
@@ -140,16 +140,17 @@ for cntx in CONTEXTS:
                             total_loss = 0         
                             rand_dir_idx = np.random.randint(26592)                           
                             state_length, data_states = GetData(directories[(dir_idx +rand_dir_idx)% 26592])
-                            
-                            for sub_ep in range(5):
+
+                            for sub_ep in range(EPOCHS):
                                 for idx, state in enumerate(data_states):
+
                                     while True:                            # -I- Generate index for the true and false samples
                                         true_idx = idx + np.random.randint(-CONTEXT_SIZE,CONTEXT_SIZE+1)
                                         false_idx = np.random.randint(0, state_length)
-                                        if not (true_idx < 0 or true_idx >= 100):
+                                        if not (true_idx < 0 or true_idx >= state_length):
                                             break
-                                                                               
-                                    #model.zero_grad()
+
+                                    model.zero_grad()
                                  
                                     classification_pos = model( torch.tensor([data_states[true_idx]]).float().cuda(), torch.tensor([state]).float().cuda() )
                                     labels_pos = torch.tensor([0]).cuda()
@@ -179,10 +180,13 @@ for cntx in CONTEXTS:
                                         correctness.append(100*temp_res_counter/(temp_samples_counter*2))
                                         temp_res_counter = 0
                                         temp_samples_counter = 0
-    
+
+
                                     loss += loss_pos + loss_neg
+                                    #loss.backward()
+                                    #optimizer.step()
                                     total_loss += loss_pos.item() + loss_neg.item()
-                                    
+
                                     if total_samples_counter % batch == 0 or total_samples_counter == EPOCHS * length:
                                         loss.backward()
                                         optimizer.step()
