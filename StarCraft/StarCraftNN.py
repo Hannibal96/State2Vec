@@ -98,8 +98,8 @@ class SiameseNN_conv(nn.Module):
 
 
 DATA_LEN = [1]
-EMBEDDINGS = [2]
-CONTEXTS = [8]
+EMBEDDINGS = [8]
+CONTEXTS = [2]
 Epochs = [40]
 BATCHS = [128]
 
