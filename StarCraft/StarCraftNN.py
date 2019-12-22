@@ -97,11 +97,11 @@ class SiameseNN_conv(nn.Module):
         return outputs
 
 
-DATA_LEN = [10]
+DATA_LEN = [1]
 EMBEDDINGS = [2]
-CONTEXTS = [2]
-Epochs = [20]
-BATCHS = [32]
+CONTEXTS = [8]
+Epochs = [40]
+BATCHS = [128]
 
 SAMPLE_RATE = 1000
 
@@ -145,85 +145,84 @@ for cntx in CONTEXTS:
                     loss = torch.tensor([0]).float().cuda()                      
                     model.zero_grad()
                     
-                    #try:
-                    for ep in range(EPOCHS):
-                        total_loss = 0
-                        for dir_idx in range(data_len):                                             
-                            rand_dir_idx = np.random.randint(26592)                           
-                            state_length, data_states = GetData(directories[(dir_idx +rand_dir_idx)% 26592])
-                            if state_length == 0:
-                                continue
-                            model.zero_grad()
-                            
-                            for idx, state in enumerate(data_states):
-                            
-                                while True:                            # -I- Generate index for the true and false samples
-                                    true_idx = idx + np.random.randint(-CONTEXT_SIZE,CONTEXT_SIZE+1)
-                                    false_idx = np.random.randint(0, state_length)
-                                    if not (true_idx < 0 or true_idx >= state_length):
-                                        break
+                    try:
+                        for ep in range(EPOCHS):
+                            total_loss = 0
+                            for dir_idx in range(data_len):                                             
+                                rand_dir_idx = np.random.randint(26592)                           
+                                state_length, data_states = GetData(directories[(dir_idx +rand_dir_idx)% 26592])
+                                if state_length == 0:
+                                    continue
+                                model.zero_grad()
+                                
+                                for idx, state in enumerate(data_states):
+                                
+                                    while True:                            # -I- Generate index for the true and false samples
+                                        true_idx = idx + np.random.randint(-CONTEXT_SIZE,CONTEXT_SIZE+1)
+                                        false_idx = np.random.randint(0, state_length)
+                                        if not (true_idx < 0 or true_idx >= state_length):
+                                            break
+    
+                                    #model.zero_grad()
+                                 
+                                    classification_pos = model( torch.tensor([data_states[true_idx]]).float().cuda(), torch.tensor([state]).float().cuda() )
+                                    labels_pos = torch.tensor([0]).cuda()
+                                    loss_pos = loss_function(classification_pos, labels_pos).cuda()
+                                
+                                    classification_neg = model( torch.tensor([data_states[false_idx]]).float().cuda(), torch.tensor([state]).float().cuda() )
+                                    labels_neg = torch.tensor([1]).cuda()
+                                    loss_neg = loss_function(classification_neg, labels_neg).cuda()
+    
+                                    if bool(classification_pos[0][0] > classification_pos[0][1]):
+                                        temp_res_counter += 1
+                                        total_res_counter += 1
+                                    if bool(classification_neg[0][0] < classification_neg[0][1]):
+                                        temp_res_counter += 1
+                                        total_res_counter += 1
+                                    total_samples_counter += 1
+                                    temp_samples_counter += 1
+    
+                                    if (int(np.random.randint(SAMPLE_RATE))) == 0 or total_samples_counter == 1:
+                                        print("******Correctness******")
+                                        print(classification_pos)
+                                        print(labels_pos)
+                                        print(classification_neg)
+                                        print(labels_neg)
+                                        print("res_percentage = "+str(100*temp_res_counter/(temp_samples_counter*2))+"%")
+                                        print("***********************")
+                                        correctness.append(100*temp_res_counter/(temp_samples_counter*2))
+                                        temp_res_counter = 0
+                                        temp_samples_counter = 0
+    
+    
+                                    loss += loss_pos + loss_neg
+                                    #loss.backward()
+                                    #optimizer.step()
+                                    total_loss += loss_pos.item() + loss_neg.item()
+    
+                                    if total_samples_counter % batch == 0 or total_samples_counter == EPOCHS * length:
+                                        loss.backward()
+                                        optimizer.step()
+                                        loss = torch.tensor([0]).float().cuda()
+                                        model.zero_grad()
+                                
+                            #if ep % (EPOCHS/100) == 0 or ep == EPOCHS-1:              
+                            print("***********Losses_Per_Epooch************")
+                            print(total_loss)
+                            print("****************************************")
+                            losses.append(total_loss)
+                            print_percentage(int(100*ep/EPOCHS))
+                            #random.shuffle(Context)
+                                
+                    except KeyboardInterrupt:
+                        print("-I- manually stopped by keyboard")
 
-                                #model.zero_grad()
-                             
-                                classification_pos = model( torch.tensor([data_states[true_idx]]).float().cuda(), torch.tensor([state]).float().cuda() )
-                                labels_pos = torch.tensor([0]).cuda()
-                                loss_pos = loss_function(classification_pos, labels_pos).cuda()
-                            
-                                classification_neg = model( torch.tensor([data_states[false_idx]]).float().cuda(), torch.tensor([state]).float().cuda() )
-                                labels_neg = torch.tensor([1]).cuda()
-                                loss_neg = loss_function(classification_neg, labels_neg).cuda()
-
-                                if bool(classification_pos[0][0] > classification_pos[0][1]):
-                                    temp_res_counter += 1
-                                    total_res_counter += 1
-                                if bool(classification_neg[0][0] < classification_neg[0][1]):
-                                    temp_res_counter += 1
-                                    total_res_counter += 1
-                                total_samples_counter += 1
-                                temp_samples_counter += 1
-
-                                if (int(np.random.randint(SAMPLE_RATE))) == 0 or total_samples_counter == 1:
-                                    print("******Correctness******")
-                                    print(classification_pos)
-                                    print(labels_pos)
-                                    print(classification_neg)
-                                    print(labels_neg)
-                                    print("res_percentage = "+str(100*temp_res_counter/(temp_samples_counter*2))+"%")
-                                    print("***********************")
-                                    correctness.append(100*temp_res_counter/(temp_samples_counter*2))
-                                    temp_res_counter = 0
-                                    temp_samples_counter = 0
-
-
-                                loss += loss_pos + loss_neg
-                                #loss.backward()
-                                #optimizer.step()
-                                total_loss += loss_pos.item() + loss_neg.item()
-
-                                if total_samples_counter % batch == 0 or total_samples_counter == EPOCHS * length:
-                                    loss.backward()
-                                    optimizer.step()
-                                    loss = torch.tensor([0]).float().cuda()
-                                    model.zero_grad()
-                            
-                        #if ep % (EPOCHS/100) == 0 or ep == EPOCHS-1:              
-                        print("***********Losses_Per_Epooch************")
-                        print(total_loss)
-                        print("****************************************")
-                        losses.append(total_loss)
-                        print_percentage(int(100*ep/EPOCHS))
-                        #random.shuffle(Context)
-                            
-                    #except KeyboardInterrupt:
-                    #    print("-I- manually stopped by keyboard")
-
-                    #except Exception as e:
-                    #    print(e)
+                    except Exception as e:
+                        print(e)
                         
                     torch.save(model.conv_1, name+str("_conv_1"))
-                    #torch.save(model.conv_2, name+str("_conv_2"))
-                    #torch.save(model.conv_3, name+str("_conv_3"))
-                    #torch.save(model.lin_1 , name+str("_lin_1"))
+                    torch.save(model.conv_2, name+str("_conv_2"))
+                    torch.save(model.conv_3, name+str("_conv_3"))
                     torch.save(model.lin_1 , name+str("_lin_1"))
                     torch.save(model.embeddings, name+str("_embed") )
 
