@@ -44,15 +44,21 @@ def GetData(dir_name):
 
 directories = os.listdir("/home/data/starcraft/replay_data/")
 
-state_length = 0
-while state_length == 0 or state_length > 500:
-    rand_dir_idx = np.random.randint(26592)
-    state_length, data_test = GetData(directories[(rand_dir_idx)% 26592])
-    print("-I- dir = "+ str(directories[(rand_dir_idx)% 26592]))
-    print("-I- #states = "+str(state_length))
+#state_length = 0
+#while state_length == 0 or state_length > 500:
+#    rand_dir_idx = np.random.randint(26592)
+#    state_length, data_test = GetData(directories[(rand_dir_idx)% 26592])
+#    print("-I- dir = "+ str(directories[(rand_dir_idx)% 26592]))
+#    print("-I- #states = "+str(state_length))
 
 NAME = sys.argv[1]
 #TEST_LENGTH = int(sys.argv[2])
+DirName = sys.argv[2]
+state_length, data_test = GetData(DirName)
+print("-I- dir = "+ str(DirName))
+print("-I- #states = "+str(state_length))
+
+
 
 model_conv_1 = torch.load("./"+NAME+"_conv_1")
 model_conv_2 = torch.load("./"+NAME+"_conv_2")
@@ -92,7 +98,7 @@ for state in (data_test):
 
 X = X.detach().cpu().numpy()
 
-PERPLEXITY = [30] # [1,5,10,30,100]
+PERPLEXITY = [1,5,10,30,100]
 for perp in PERPLEXITY:
     print(X.shape)
     X_embed = TSNE(n_components=2, perplexity = perp, n_iter = 5000).fit_transform(X)
